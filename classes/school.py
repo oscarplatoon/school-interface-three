@@ -1,5 +1,8 @@
 from classes.staff import Staff
 from classes.student import Student
+import csv
+import os
+import sys
 
 class School:
     def __init__(self, name):
@@ -16,3 +19,30 @@ class School:
         for student in self.students:
             if student.school_id == student_id:
                 return student
+
+    def add_student(self, student_data):
+        self.students.append(Student(**student_data))
+
+        my_path = os.path.abspath(os.path.dirname(__file__))
+        path = os.path.join(my_path, "../data/students_copy.csv")
+        with open(path, mode='w') as csvfile:
+            student_csv = csv.writer(csvfile, delimiter=',')
+            student_csv.writerow(['name', 'age', 'role', 'school_id', 'password'])
+            for student in self.students:
+                student_csv.writerow([student.name, student.age, student.role, student.school_id, student.password])
+
+    def delete_student(self, student_id):
+        for student in self.students:
+            print("student.school_id: " + student.school_id, "student_id: " + student_id)
+            if student.school_id == student_id:
+                print("Here if")
+                self.students.remove(student)
+                break
+
+        my_path = os.path.abspath(os.path.dirname(__file__))
+        path = os.path.join(my_path, "../data/students_copy.csv")
+        with open(path, mode='w') as csvfile:
+            student_csv = csv.writer(csvfile, delimiter=',')
+            student_csv.writerow(['name', 'age', 'role', 'school_id', 'password'])
+            for student in self.students:
+                student_csv.writerow([student.name, student.age, student.role, student.school_id, student.password])
