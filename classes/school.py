@@ -38,14 +38,30 @@ class School:
                 pw = student.password
                 writer.writerow({'name': name,'age': age, 'role': role, 'school_id': id, 'password': pw})
 
+ 
+    def delete_student(self, delete_student_id):
+        my_path = os.path.abspath(os.path.dirname(__file__))
+        path = os.path.join(my_path, "../data/students.csv")
 
+        with open(path, mode = 'w', newline='') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=['role', 'name', 'age', 'school_id', 'password'])
+            writer.writeheader()
 
-            # students.append(Student(**dict(student_data)))
+            for student in self.students:
+                
+                name = student.name
+                age = student.age
+                role = student.role
+                id = student.school_id
+                pw = student.password
+                if id == delete_student_id:
+                    pass
+                elif id != delete_student_id:
+                    writer.writerow({'name': name,'age': age, 'role': role, 'school_id': id, 'password': pw})
+        
+        self.students = Student.objects()
+        
 
-        #     writer.writeheader()
-        #     writer.writerow({'first_name': 'Baked', 'last_name': 'Beans'})
-        #     writer.writerow({'first_name': 'Lovely', 'last_name': 'Spam'})
-        #     writer.writerow({'first_name': 'Wonderful', 'last_name': 'Spam'})
 
 
                 
