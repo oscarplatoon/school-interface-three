@@ -23,3 +23,11 @@ class Student(Person):
                 students.append(Student(**dict(row)))
 
         return students
+
+# name,age,role,school_id,password
+# Lisa,25,Student,13345,xx 
+# Jessie,25,Student,12335,xx
+# Slater,25,Student,12645,xx
+# kim,31,Student,34456,xx
+# dave,77,Student,788908,xx
+# doug,88,Student,0809890,xx

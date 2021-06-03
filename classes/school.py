@@ -1,3 +1,6 @@
+import csv
+import os.path
+        
 from classes.staff import Staff
 from classes.student import Student
 
@@ -18,5 +21,31 @@ class School:
                 return student
 
     def add_student(self, student_data):
+        my_path = os.path.abspath(os.path.dirname(__file__))
+        path = os.path.join(my_path, "../data/students.csv")
 
         self.students.append(Student(**dict(student_data)))
+
+        with open(path, mode = 'w', newline='') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=['role', 'name', 'age', 'school_id', 'password'])
+            writer.writeheader()
+
+            for student in self.students:
+                name = student.name
+                age = student.age
+                role = student.role
+                id = student.school_id
+                pw = student.password
+                writer.writerow({'name': name,'age': age, 'role': role, 'school_id': id, 'password': pw})
+
+
+
+            # students.append(Student(**dict(student_data)))
+
+        #     writer.writeheader()
+        #     writer.writerow({'first_name': 'Baked', 'last_name': 'Beans'})
+        #     writer.writerow({'first_name': 'Lovely', 'last_name': 'Spam'})
+        #     writer.writerow({'first_name': 'Wonderful', 'last_name': 'Spam'})
+
+
+                
