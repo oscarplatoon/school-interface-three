@@ -1,5 +1,7 @@
 from classes.staff import Staff
 from classes.student import Student
+import csv
+import os
 
 class School:
     def __init__(self, name):
@@ -18,4 +20,12 @@ class School:
                 return student
 
     def add_student(self, student_data):
-        self.students = student_data
+        self.students.append(Student(**student_data))
+
+        my_path = os.path.abspath(os.path.dirname(__file__))
+        path = os.path.join(my_path, "../data/students_copy.csv")
+        with open(path, 'w') as csvfile:
+            student_csv = csv.writer(csvfile, delimiter=',')
+            student_csv.writerow(['name', 'age', 'role', 'school_id', 'password'])
+            for student in self.students:
+                student_csv.writerow([student.name, student.age, student.role, student.school_id, student.password])
