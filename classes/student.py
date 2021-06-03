@@ -15,7 +15,7 @@ class Student(Person):
     def objects(cls):
         students = []
         my_path = os.path.abspath(os.path.dirname(__file__))
-        path = os.path.join(my_path, "../data/students.csv")
+        path = os.path.join(my_path, "../data/updated_students.csv")
 
         with open(path) as csvfile:
             reader = csv.DictReader(csvfile)

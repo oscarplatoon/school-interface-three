@@ -23,10 +23,11 @@ class School:
     def add_student(self, student_data):
         new_student = Student(**dict(student_data))
         self.students.append(new_student)
+        self.store_students()
 
+    def store_students(self):
         my_path = os.path.abspath(os.path.dirname(__file__))
         path = os.path.join(my_path, "../data/updated_students.csv")
-
         with open(path, 'w', newline = '\n') as csvfile:
             field_names = ['name', 'age', 'password', 'role', 'school_id']
             writer = csv.DictWriter(csvfile, field_names)
@@ -38,5 +39,10 @@ class School:
                     'role': student.role,
                     'school_id': student.school_id,
                     'password': student.password})
-                    
-                print(f"wrote {student}")
+
+    def delete_student(self, student_id):
+        self.students.remove(self.find_student_by_id(student_id))
+        self.store_students()
+
+        # my_path = os.path.abspath(os.path.dirname(__file__))
+        # path = os.path.join(my_path, "../data/updated_students.csv")

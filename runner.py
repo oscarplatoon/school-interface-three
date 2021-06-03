@@ -7,6 +7,7 @@ while True:
 
     if mode == '1':
         school.list_students()
+    
     elif mode == '2':
         student_id = input('Enter student id:')
         student_string = str(school.find_student_by_id(student_id))
@@ -20,6 +21,12 @@ while True:
         student_data['password'] = input('Enter student password: \n')
         school.add_student(student_data)
         print("Added new student.")
+
+    elif mode == '4':
+        print("WARNING, DELETING A STUDENT IS IRREVERSIBLE, AND YOUR BOSS MIGHT BE ANGRY")
+        student_id = input('Enter student id for deletion, see the above warning:')
+        school.delete_student(student_id)
+        print("It is done.")
 
     elif mode == '5':
         break
