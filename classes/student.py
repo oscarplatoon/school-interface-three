@@ -23,3 +23,5 @@ class Student(Person):
                 students.append(Student(**dict(row)))
 
         return students
+
+        
