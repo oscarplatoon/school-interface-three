@@ -1,5 +1,11 @@
 from classes.staff import Staff
 from classes.student import Student
+import os.path
+import csv
+my_path = os.path.abspath(os.path.dirname(__file__))
+
+path = os.path.join(my_path, "../data/students.csv")
+
 
 class School:
     def __init__(self, name):
@@ -16,3 +22,14 @@ class School:
         for student in self.students:
             if student.school_id == student_id:
                 return student
+
+    def add_student(self, student_data):
+        
+        with open(path, mode = 'a') as csvfile:
+            student_writer = csv.DictWriter(csvfile, fieldnames=['name','age','role', 'school_id', 'password'])
+            student_writer.writerow(student_data)
+            self.students.append(Student(**student_data))
+            
+            
+        
+        
