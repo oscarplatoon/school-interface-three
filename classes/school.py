@@ -33,9 +33,7 @@ class School:
 
     def delete_student(self, student_id):
         for student in self.students:
-            print("student.school_id: " + student.school_id, "student_id: " + student_id)
             if student.school_id == student_id:
-                print("Here if")
                 self.students.remove(student)
                 break
 
