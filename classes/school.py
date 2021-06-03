@@ -19,9 +19,4 @@ class School:
 
     def add_student(self, student_data):
 
-        # print(student_data.name)
-
-        # with open(path) as csvfile:
-        #     reader = csv.DictReader(csvfile)
-        #     for row in reader:
         self.students.append(Student(**dict(student_data)))
