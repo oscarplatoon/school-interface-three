@@ -16,3 +16,12 @@ class School:
         for student in self.students:
             if student.school_id == student_id:
                 return student
+
+    def add_student(self, student_data):
+
+        # print(student_data.name)
+
+        # with open(path) as csvfile:
+        #     reader = csv.DictReader(csvfile)
+        #     for row in reader:
+        self.students.append(Student(**dict(student_data)))
