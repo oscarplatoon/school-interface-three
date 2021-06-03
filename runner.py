@@ -17,8 +17,10 @@ while True:
         student_data['age']       = input('Enter student age: \n')
         student_data['school_id'] = input('Enter student school id: \n')
         student_data['password']  = input('Enter student password: \n')
-        # print(student_data)
         school.add_student(student_data)
+    elif mode == '4':
+        id_to_be_removed = input('Enter student id for deletion \n')
+        school.delete_student(id_to_be_removed)
         
     elif mode == '5':
         break  

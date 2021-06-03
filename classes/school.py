@@ -30,6 +30,29 @@ class School:
             student_writer.writerow(student_data)
             self.students.append(Student(**student_data))
             
+
+    def delete_student(self, student_id):
+        deleted_id = student_id
+        # looping through list of student obj's
+        for student in self.students:
+        # find the student that needs to be deleted
+            if student.school_id == deleted_id:
+            # delete student from self.students
+                self.students.remove(student)
+                # update the student.csv file
+        with open(path, mode= 'w') as csvfile:    
+            writer = csv.writer(csvfile)
+            writer.writerow(['name', 'age', 'role', 'school_id', 'password'])
+            for student_obj in self.students:
+                writer.writerow([student_obj.name, student_obj.age, student_obj.role, student_obj.school_id, student_obj.password])
+                
+      
+
             
+
         
-        
+    #     # with open('first.csv', 'rb') as inp, open('first_edit.csv', 'wb') as out:
+    # writer = csv.writer(out)
+    # for row in csv.reader(inp):
+    #     if row[2] != "0":
+    #         writer.writerow(row)
